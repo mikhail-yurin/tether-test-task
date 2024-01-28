@@ -10,6 +10,15 @@ let dispatch: Dispatch = store.dispatch;
 
 let hbTimeout: any;
 
+const resetTimer = () => {
+    if (hbTimeout) {
+        clearTimeout(hbTimeout);
+    }
+    hbTimeout = setTimeout(() => {
+        dispatch(setConnection('Disconnected'));
+    }, 15100);
+};
+
 export const connect = async (prec: PrecType) => {
     dispatch(setConnection('Connecting'));
 
@@ -19,12 +28,7 @@ export const connect = async (prec: PrecType) => {
         const data = JSON.parse(event.data);
 
         if (dispatch && data[1] === 'hb') {
-            if (hbTimeout) {
-                clearTimeout(hbTimeout);
-                hbTimeout = setTimeout(() => {
-                    dispatch(setConnection('Disconnected'));
-                }, 15000);
-            }
+            resetTimer();
             dispatch(setConnection('Connected'));
         }
 
@@ -54,6 +58,8 @@ export const connect = async (prec: PrecType) => {
             symbol: 'tBTCUSD',
             prec,
         }));
+
+        resetTimer();
     });
 
     socket.addEventListener('error', (event) => {
