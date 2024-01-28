@@ -1,0 +1,57 @@
+.collapseTitle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+}
+
+.collapseTitle > div {
+  width: fit-content;
+}
+
+.shevron {
+  margin-right: 8px;
+  width: fit-content;
+}
+
+.children {
+  margin-top: 8px;
+  margin-left: 16px;
+}
+
+.subtitle {
+  margin-left: 4px;
+}
+
+.connectionControl {
+  width: 100%;
+}
+
+.btn {
+  width: fit-content;
+  cursor: pointer;
+  padding: 6px;
+  margin: 8px;
+  background-color: lightgrey;
+  border-radius: 4px;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.Connecting,
+.Connected {
+  background-color: lightgreen;
+}
+
+.Disconnected,
+.Disconnecting {
+  background-color: lightcoral;
+}
+
+.disabled {
+  cursor: not-allowed;
+  color: grey;
+  background-color: lightgrey;
+}

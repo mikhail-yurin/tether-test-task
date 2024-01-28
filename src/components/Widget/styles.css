@@ -1,0 +1,8 @@
+.widget {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  min-width: 480px;
+  height: fit-content;
+  background-color: whitesmoke;
+}

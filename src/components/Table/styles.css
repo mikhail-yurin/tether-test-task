@@ -1,0 +1,12 @@
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  min-height: 480px;
+}
+
+.table {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+}

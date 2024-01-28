@@ -1,0 +1,8 @@
+.row {
+  display: grid;
+  grid-template-columns: repeat(3, 120px);
+}
+
+.row:hover {
+  background-color: grey;
+}
