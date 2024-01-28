@@ -44,15 +44,12 @@ export const orderBookSlice = createSlice({
             state.asks = asks;
         },
         updateData: (state, action: { payload: UpdateDataType }) => {
-            // [price, count, amount]
             const [price, count, amount] = action.payload;
             // count > 0 then you have to add or update the price level
             if (count > 0) {
                 // if amount > 0 then add/update bids
                 if (amount > 0) {
-                    const index = state.bids.findIndex((bid) => {
-                        return bid[0] === price;
-                    });
+                    const index = state.bids.findIndex((bid) => bid[0] === price);
                     if (index > -1) {
                         state.bids[index] = action.payload;
                     } else {
@@ -61,9 +58,7 @@ export const orderBookSlice = createSlice({
                 }
                 // if amount < 0 then add/update asks
                 if (amount < 0) {
-                    const index = state.asks.findIndex((ask) => {
-                        return ask[0] === price;
-                    });
+                    const index = state.asks.findIndex((ask) => ask[0] === price);
                     if (index > -1) {
                         state.asks[index] = action.payload;
                     } else {
