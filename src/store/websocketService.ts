@@ -19,35 +19,37 @@ const resetTimer = () => {
     }, 15100);
 };
 
+const handleMessage = (event: MessageEvent<any>) => {
+    const data = JSON.parse(event.data);
+
+    if (dispatch && data[1] === 'hb') {
+        resetTimer();
+        dispatch(setConnection('Connected'));
+    }
+
+    if (dispatch && data.event === 'subscribed') {
+        dispatch(setPair(data.pair));
+    }
+
+    if (dispatch && !data.event && data) {
+        const [channelId, channelData] = data;
+
+        if (typeof channelData[0] === 'object') {
+            // got snapshot
+            dispatch(setData(channelData));
+        } else if (typeof channelData[0] === 'number') {
+            // got update
+            dispatch(updateData(channelData));
+        }
+    }
+};
+
 export const connect = async (prec: PrecType) => {
     dispatch(setConnection('Connecting'));
 
     socket = new WebSocket('wss://api-pub.bitfinex.com/ws/2');
 
-    socket.addEventListener('message', (event) => {
-        const data = JSON.parse(event.data);
-
-        if (dispatch && data[1] === 'hb') {
-            resetTimer();
-            dispatch(setConnection('Connected'));
-        }
-
-        if (dispatch && data.event === 'subscribed') {
-            dispatch(setPair(data.pair));
-        }
-
-        if (dispatch && !data.event && data) {
-            const [channelId, channelData] = data;
-
-            if (typeof channelData[0] === 'object') {
-                // got snapshot
-                dispatch(setData(channelData));
-            } else if (typeof channelData[0] === 'number') {
-                // got update
-                dispatch(updateData(channelData));
-            }
-        }
-    });
+    socket.addEventListener('message', handleMessage);
 
     socket.addEventListener('open', () => {
         dispatch(setConnection('Connected'));
