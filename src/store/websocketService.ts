@@ -2,6 +2,8 @@ import { Dispatch } from '@reduxjs/toolkit';
 import store from '.';
 import { PrecType, setConnection, setData, setPair, updateData } from './slice';
 
+export type ConnectionType = 'Connecting' | 'Connected' | 'Disconnecting' | 'Disconnected';
+
 let socket: WebSocket;
 
 let dispatch: Dispatch = store.dispatch;
@@ -73,5 +75,3 @@ export const disconnect = async () => {
     }
     dispatch(setConnection('Disconnected'));
 };
-
-export type ConnectionType = 'Connecting' | 'Connected' | 'Disconnecting' | 'Disconnected';

@@ -1,0 +1,23 @@
+.btn {
+  transition: all 0.2s ease;
+  width: fit-content;
+  cursor: pointer;
+  padding: 6px;
+  margin: 8px;
+  background-color: lightgrey;
+  border-radius: 4px;
+}
+
+.btn:hover {
+  background-color: grey;
+}
+
+.disabled {
+  cursor: not-allowed;
+  color: grey;
+  background-color: lightgrey;
+}
+
+.disabled:hover {
+  background-color: lightgrey;
+}

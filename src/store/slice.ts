@@ -9,7 +9,7 @@ type StoreType = {
     pair: string | null;
     bids: UpdateDataType[];
     asks: UpdateDataType[];
-    connection: ConnectionType | null;
+    connection: ConnectionType;
     prec: PrecType;
 }
 
@@ -19,7 +19,7 @@ export const orderBookSlice = createSlice({
         pair: '',
         bids: [],
         asks: [],
-        connection: null,
+        connection: 'Disconnected',
         prec: 'P0',
     } as StoreType,
     reducers: {

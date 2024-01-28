@@ -25,33 +25,11 @@
 
 .connectionControl {
   width: 100%;
-}
-
-.btn {
-  width: fit-content;
-  cursor: pointer;
-  padding: 6px;
-  margin: 8px;
-  background-color: lightgrey;
-  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  margin-left: 8px;
 }
 
 .spacer {
   flex: 1;
-}
-
-.Connecting,
-.Connected {
-  background-color: lightgreen;
-}
-
-.Disconnected,
-.Disconnecting {
-  background-color: lightcoral;
-}
-
-.disabled {
-  cursor: not-allowed;
-  color: grey;
-  background-color: lightgrey;
 }

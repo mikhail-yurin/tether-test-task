@@ -4,6 +4,7 @@ import { AppDispatch } from '../../store';
 import { connectionSelector, precSelector } from '../../store/selectors';
 import { increasePrec, descreasePrec } from '../../store/slice';
 import { connect, disconnect } from '../../store/websocketService';
+import { Button } from '../Buttom';
 import './styles.css';
 
 type Props = {
@@ -40,6 +41,20 @@ export const ExpandCollapse: React.FC<Props> = ({ title, subtitle, children }) =
         dispatch(descreasePrec());
     };
 
+    const getConnectionIcon = () => {
+        switch (connection) {
+            case 'Connecting':
+            case 'Connected':
+                return '🟢';
+            case 'Disconnecting':
+            case 'Disconnected':
+                return '🔴';
+
+            default:
+                break;
+        }
+    };
+
     useEffect(() => {
         disconnect();
         connect(prec);
@@ -51,14 +66,16 @@ export const ExpandCollapse: React.FC<Props> = ({ title, subtitle, children }) =
                 <div className='shevron' onClick={handleToggle}>
                     {isExpanded ? '🔻' : '🔺'}
                 </div>
+
                 <div>{title}</div>
+
                 {subtitle && (<div className='subtitle'>{subtitle.slice(0, 3) + '/' + subtitle.slice(3)}</div>)}
 
                 <div className='spacer' />
 
-                <div className={`btn ${prec === 'P4' ? 'disabled' : ''}`} onClick={handlePrecDecrease}>.0</div>
+                <Button text='.0' onClick={handlePrecDecrease} disabled={prec === 'P4'} />
 
-                <div className={`btn ${prec === 'P0' ? 'disabled' : ''}`} onClick={handlePrecIncrease}>.00</div>
+                <Button text='.00' onClick={handlePrecIncrease} disabled={prec === 'P0'} />
             </div>
 
             {isExpanded && (
@@ -68,9 +85,8 @@ export const ExpandCollapse: React.FC<Props> = ({ title, subtitle, children }) =
             )}
 
             <div className='connectionControl'>
-                <div className={`btn ${connection}`} onClick={handleConnectDisconnect} title="Click to change connection status">
-                    {connection}
-                </div>
+                {getConnectionIcon()}
+                <Button text={connection} onClick={handleConnectDisconnect} hint="Click to change connection status" />
             </div>
         </>
     );
