@@ -1,13 +1,14 @@
+import { createSelector } from "@reduxjs/toolkit";
 import { RootState } from ".";
 
 const selfSelector = (state: RootState) => state.bookOrderReducer;
 
-export const pairSelector = (state: RootState) => selfSelector(state).pair;
+export const pairSelector = (state: RootState) => createSelector(selfSelector, (state) => state.pair);
 
-export const bidsSelector = (state: RootState) => selfSelector(state).bids;
+export const bidsSelector = (state: RootState) => createSelector(selfSelector, (state) => state.bids);
 
-export const asksSelector = (state: RootState) => selfSelector(state).asks;
+export const asksSelector = (state: RootState) => createSelector(selfSelector, (state) => state.asks);
 
-export const connectionSelector = (state: RootState) => selfSelector(state).connection;
+export const connectionSelector = createSelector(selfSelector, (state) => state.connection);
 
-export const precSelector = (state: RootState) => selfSelector(state).prec;
+export const precSelector = createSelector(selfSelector, (state) => state.prec);
