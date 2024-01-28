@@ -1,8 +1,9 @@
 .row {
+  transition: all 0.2s ease;
   display: grid;
   grid-template-columns: repeat(3, 120px);
 }
 
 .row:hover {
-  background-color: grey;
+  background-color: lightgrey;
 }
