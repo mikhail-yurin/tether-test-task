@@ -68,10 +68,10 @@ export const disconnect = async () => {
         clearTimeout(hbTimeout);
     }
     dispatch(setConnection('Disconnecting'));
-    await socket.close();
+    if (socket) {
+        await socket.close();
+    }
     dispatch(setConnection('Disconnected'));
 };
 
 export type ConnectionType = 'Connecting' | 'Connected' | 'Disconnecting' | 'Disconnected';
-
-connect('P0');
