@@ -13,7 +13,7 @@ const Component: React.FC<Props> = ({ price, count, amount }) => {
 
     return (
         <div className='row'>
-            <div style={{ rubyAlign: 'center' }}>{count}</div>
+            <div>{count}</div>
             <div>{amountDisplayValue}</div>
             <div>{priceDisplayValue}</div>
         </div>

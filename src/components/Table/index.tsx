@@ -13,17 +13,16 @@ export const Table: React.FC = () => {
             <div className='table'>
                 <Row price={'Price'} count={'Count'} amount={'Amount'} />
 
-                {bidsData
-                    ?.map(([price, count, amount], index) => (
-                        <Row price={price} count={count} amount={amount} key={`${price}-${count}-${amount}-${index}`} />
-                    ))}
+                {bidsData?.map(([price, count, amount], index) => (
+                    <Row price={price} count={count} amount={amount} key={price} />
+                ))}
             </div>
 
             <div className='table'>
                 <Row price={'Price'} count={'Count'} amount={'Amount'} />
 
                 {asksData?.map(([price, count, amount], index) => (
-                    <Row price={price} count={count} amount={amount} key={`${price}-${count}-${amount}-${index}`} />
+                    <Row price={price} count={count} amount={amount} key={price} />
                 ))}
             </div>
         </div>
